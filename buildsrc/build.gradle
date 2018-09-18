@@ -1,0 +1,40 @@
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+dependencies {
+    //gradle sdk
+    compile gradleApi()
+    //groovy sdk
+    compile localGroovy()
+    compile "com.android.tools.build:gradle:3.0.0"
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+    google()
+}
+
+tasks.withType(GroovyCompile) {
+    sourceCompatibility = '1.7'
+    targetCompatibility = '1.7'
+}
+
+//group和version
+group='com.dryseed.dsgradle.dsplugin'
+version='1.0.0'
+
+//打包到本地或者远程Maven库
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            //提交到远程服务器：
+            // repository(url: "http://www.xxx.com/repos") {
+            //    authentication(userName: "admin", password: "admin")
+            // }
+            //本地的Maven地址设置为E:/Maven
+            repository(url: uri('C:/repo'))
+        }
+    }
+}
