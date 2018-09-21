@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.dryseed.dsplugin'
 
 android {
     compileSdkVersion 28
@@ -12,8 +11,13 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        }
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -26,4 +30,11 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+
+apply plugin: 'com.dryseed.dsplugin'
+virtualApk {
+    packageId = 0x6f // the package id of Resources.
+    targetHost = '../DsGradlePlugin/app' // the path of application module in host project.
+    applyHostMapping = true //optional, default value: true.
 }
