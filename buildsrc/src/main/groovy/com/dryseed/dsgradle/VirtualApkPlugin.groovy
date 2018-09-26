@@ -15,7 +15,7 @@ import org.gradle.api.artifacts.component.ComponentIdentifier
 import org.gradle.api.artifacts.component.ModuleComponentIdentifier
 import org.gradle.api.artifacts.component.ProjectComponentIdentifier
 
-class DsPlugin extends BasePlugin {
+class VirtualApkPlugin extends BasePlugin {
     Project mProject
     File mVaHostDir
     File mHostDir
@@ -24,7 +24,7 @@ class DsPlugin extends BasePlugin {
     void apply(Project project) {
         super.apply(project)
 
-        Log.i(" #### DsPlugin apply ####")
+        Log.i(" #### VirtualApkPlugin apply ####")
 
         mProject = project
         mVaHostDir = new File(project.getBuildDir(), "VAHost")

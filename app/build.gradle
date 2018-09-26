@@ -32,9 +32,17 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
 
-apply plugin: 'com.dryseed.dsplugin'
-virtualApk {
-    packageId = 0x6f // the package id of Resources.
-    targetHost = '../DsGradlePlugin/app' // the path of application module in host project.
-    applyHostMapping = true //optional, default value: true.
+//apply plugin: 'com.dryseed.virtualapkplugin'
+//virtualApk {
+//    packageId = 0x6f // the package id of Resources.
+//    targetHost = '../DsGradlePlugin/app' // the path of application module in host project.
+//    applyHostMapping = true //optional, default value: true.
+//}
+
+apply plugin: 'com.dryseed.neptuneplugin'
+// 宿主使用，固定资源id
+neptune {
+    pluginMode = false
+    packageId = 0x7f
 }
+
