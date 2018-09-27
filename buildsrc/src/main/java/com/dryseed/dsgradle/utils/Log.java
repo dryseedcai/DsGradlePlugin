@@ -7,7 +7,7 @@ public final class Log {
     }
 
     public static int i(String msg) {
-        System.out.println("[INFO][MMM] " + msg);
+        System.out.println("[INFO][=======MMM=======] " + msg);
         return 0;
     }
 
@@ -17,7 +17,7 @@ public final class Log {
     }
 
     public static int e(String msg) {
-        System.err.println("[ERROR][MMM] " + msg);
+        System.err.println("[ERROR][=======MMM=======] " + msg);
         return 0;
     }
 

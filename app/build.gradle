@@ -12,13 +12,18 @@ android {
     }
     buildTypes {
         debug {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //minifyEnabled false
+            //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
         }
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
         }
     }
 }
@@ -30,8 +35,13 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation "com.qiyi.video.allclasses:commonres_lib:1.4.0"    // commonres_lib
 }
 
+/**
+ * VirtualApk
+ */
 //apply plugin: 'com.dryseed.virtualapkplugin'
 //virtualApk {
 //    packageId = 0x6f // the package id of Resources.
@@ -39,10 +49,21 @@ dependencies {
 //    applyHostMapping = true //optional, default value: true.
 //}
 
+/**
+ * Neptune
+ */
 apply plugin: 'com.dryseed.neptuneplugin'
 // 宿主使用，固定资源id
+//neptune {
+//    pluginMode = false
+//    packageId = 0x7f
+//}
+//插件使用
 neptune {
-    pluginMode = false
-    packageId = 0x7f
+    pluginMode = true
+    packageId = 0x30
+    hostPackageName = "com.dryseed.dsgradleplugin"
+    hostDependencies = "com.qiyi.video.allclasses:commonres_lib"
+    dexModify = false
 }
 
